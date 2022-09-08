@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6908197270293807056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6908197270293807054}
+  - component: {fileID: 6908197270293807057}
+  - component: {fileID: 6908197270293807055}
+  m_Layer: 0
+  m_Name: _Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6908197270293807054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908197270293807056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6908197270293807057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908197270293807056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd7c355cc967f34ab623188570691e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aiPlayerPrefab: {fileID: 7397746620801759207, guid: 2bf1a73d7b10c2a418e9c97fd6b34a96, type: 3}
+--- !u!114 &6908197270293807055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908197270293807056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bb2473ec27f7d46a45c327448c6bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _units:
+  - unitId: tank
+    unitCost: 50
+    unitPrefab: {fileID: 1022868880878435925, guid: ed1939857b3263c478424ba74deb02d8, type: 3}
+    requiresStructure: 
+    offset: {x: 0, y: 0.1, z: 0}
+  - unitId: jet
+    unitCost: 150
+    unitPrefab: {fileID: 8107805263151917315, guid: ce53bead1c654314ca29d559dbc54425, type: 3}
+    requiresStructure: airbase
+    offset: {x: 1, y: 0.1, z: 0}
+  _structures:
+  - structureId: airbase
+    structureCost: 500
+    structurePrefab: {fileID: 4918452276154609127, guid: 3a5f6a559412a17468f019616adbf7d5, type: 3}
+    maxType: 1
+    offset: {x: 1, y: 0.2, z: 0}
+  - structureId: townhall
+    structureCost: 0
+    structurePrefab: {fileID: 4482769611175461411, guid: a64e6932224c46b4aabcee59d39d1112, type: 3}
+    maxType: 1
+    offset: {x: 0, y: 0.2, z: 0}
