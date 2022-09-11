@@ -7,16 +7,15 @@ public class JetPositioner : MonoBehaviour {
     [System.NonSerialized] public Transform PositionReplication;
     //This is the actual target that the plane should be flying towards/around
     public Transform Target;
-    
     //How often we update the target position
     public float UpdateSpeed = 1;
     //Adjusts speed of the rotation lerp
     public float RotationSpeed = 10;
+    public float forwardDistance = 20;
 
-    private Vector3 originalPosition = Vector3.zero;
-    private Vector3 targetPosition;
-    private float startTime = 0;
-    private float time = 0;
+    private Vector3 _originalPosition = Vector3.zero;
+    private Vector3 _targetPosition;
+    private float _time = 0;
 
     void Start() {
         StartCoroutine(UpdatePosition());
@@ -31,11 +30,11 @@ public class JetPositioner : MonoBehaviour {
 
         //Reset to center of plane and then face the target
         transform.localPosition = Vector3.zero;
-        transform.LookAt(targetPosition);
+        transform.LookAt(_targetPosition);
 
         //Calculate lerp to face the target
-        transform.position = Vector3.Lerp(originalPosition, targetPosition, time / RotationSpeed);
-        time += Time.deltaTime;
+        transform.position = Vector3.Lerp(_originalPosition, _targetPosition, _time / RotationSpeed);
+        _time += Time.deltaTime;
 
         PositionReplication.transform.position = transform.position;
     }
@@ -53,17 +52,16 @@ public class JetPositioner : MonoBehaviour {
                 continue;
             }
 
-            originalPosition = transform.position;
-            startTime = Time.time;
-            time = 0;
+            _originalPosition = transform.position;
+            _time = 0;
 
             //Reset to center of plane and then face the target
             transform.localPosition = Vector3.zero;
             transform.LookAt(Target.position);
 
-            transform.position = transform.forward * 20;
-            
-            targetPosition = transform.position;
+            transform.position = transform.forward * forwardDistance;
+
+            _targetPosition = new Vector3(transform.position.x, 0, transform.position.z);
 
             yield return new WaitForSeconds(UpdateSpeed);
         }

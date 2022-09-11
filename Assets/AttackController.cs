@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class AttackController {
+    List<Unit> units = new List<Unit>();
 
-    // Update is called once per frame
-    void Update()
-    {
+    public AttackController() {
         
     }
 }
