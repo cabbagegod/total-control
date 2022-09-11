@@ -68,7 +68,7 @@ MonoBehaviour:
     unitCost: 150
     unitPrefab: {fileID: 8107805263151917315, guid: ce53bead1c654314ca29d559dbc54425, type: 3}
     requiresStructure: airbase
-    offset: {x: 1, y: 0.1, z: 0}
+    offset: {x: 1, y: 0.125, z: 0}
   _structures:
   - structureId: airbase
     structureCost: 500

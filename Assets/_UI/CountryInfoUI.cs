@@ -52,4 +52,9 @@ public class CountryInfoUI : MonoBehaviour {
         FindObjectOfType<LocalPlayer>().SetCountry(_country);
         Hide();
     }
+
+    public void AttackCountry() {
+        FindObjectOfType<LocalPlayer>().Country.AttackCountry(_country);
+        Hide();
+    }
 }

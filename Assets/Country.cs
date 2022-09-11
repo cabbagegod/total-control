@@ -153,4 +153,25 @@ public class Country : MonoBehaviour {
     private void HideCountryOutline() {
         _outline.eraseRenderer = true;
     }
+
+    public void AttackCountry(Country country) {
+        Debug.Log("Attack started. Units in reserve: " + _reserveUnits.Count);
+
+        StartCoroutine(SlowReleaseTroops(country));
+    }
+
+    private void UnitAttack(Unit unit, Transform target) {
+        _reserveUnits.Remove(unit);
+        _activeUnits.Add(unit);
+
+        unit.WalkToTarget(target);
+    }
+
+    private IEnumerator SlowReleaseTroops(Country country) {
+        //Reverse 'for' iteration so you can remove items from the list
+        for(int i = _reserveUnits.Count - 1; i >= 0; i--) {
+            UnitAttack(_reserveUnits[i], country.transform);
+            yield return new WaitForSeconds(.25f);
+        }
+    }
 }
