@@ -85,11 +85,17 @@ public class Country : MonoBehaviour {
         }
 
         //Create the unit
+        //Remove the cost of the unit
         RemoveResources(data.unitCost);
+        //Create the gameobject
         GameObject unitGameObject = Instantiate(data.unitPrefab, transform.position + data.offset, Quaternion.identity);
+        //Get the Unit from the gameobject
         Unit unit = unitGameObject.GetComponent<Unit>();
+        //Make sure to set it's country
+        unit.Country = this;
+        unit.UnitId = unitId;
 
-        //Add it to your reserves
+        //Add it to your reserves so it can be used in battle
         _reserveUnits.Add(unit);
     }
 
@@ -157,14 +163,33 @@ public class Country : MonoBehaviour {
     public void AttackCountry(Country country) {
         Debug.Log("Attack started. Units in reserve: " + _reserveUnits.Count);
 
-        StartCoroutine(SlowReleaseTroops(country));
+        List<Unit> army = new List<Unit>();
+        for(int i = _reserveUnits.Count - 1; i >= 0; i--) {
+            Unit unit = _reserveUnits[i];
+
+            if(MoveUnitToActive(unit)) {
+                army.Add(unit);
+            }
+        }
+
+        new AttackController(this, country, army);
+        //StartCoroutine(SlowReleaseTroops(country));
+    }
+
+    private bool MoveUnitToActive(Unit unit) {
+        if(_reserveUnits.Contains(unit)) {
+            _reserveUnits.Remove(unit);
+            _activeUnits.Add(unit);
+            return true;
+        }
+        return false;
     }
 
     private void UnitAttack(Unit unit, Transform target) {
         _reserveUnits.Remove(unit);
         _activeUnits.Add(unit);
 
-        unit.WalkToTarget(target);
+        unit.MoveToTarget(target);
     }
 
     private IEnumerator SlowReleaseTroops(Country country) {
@@ -172,6 +197,24 @@ public class Country : MonoBehaviour {
         for(int i = _reserveUnits.Count - 1; i >= 0; i--) {
             UnitAttack(_reserveUnits[i], country.transform);
             yield return new WaitForSeconds(.25f);
+        }
+    }
+
+    public void RemoveUnit(Unit unit) {
+        if(_reserveUnits.Contains(unit))
+            _reserveUnits.Remove(unit);
+        else if(_activeUnits.Contains(unit))
+            _activeUnits.Remove(unit);
+    }
+
+    public List<Unit> GetReserveUnits() {
+        return _reserveUnits;
+    }
+
+    public void MoveUnitBackToReserve(Unit unit) {
+        if(_activeUnits.Contains(unit)) {
+            _activeUnits.Remove(unit);
+            _reserveUnits.Add(unit);
         }
     }
 }

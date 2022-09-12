@@ -48,6 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0614ee37d69b3e4c8812be00e4ccaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  _speed: 1
+  _health: 100
+  _damage: 40
 --- !u!114 &3283293297067241988
 MonoBehaviour:
   m_ObjectHideFlags: 0

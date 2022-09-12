@@ -46,7 +46,7 @@ public class JetPositioner : MonoBehaviour {
                 yield return new WaitForSeconds(1);
                 continue;
             }
-            if(UpdateSpeed < .1) {
+            if(UpdateSpeed == 0) {
                 Debug.LogError("Update speed is too low");
                 yield return new WaitForSeconds(1);
                 continue;

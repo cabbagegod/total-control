@@ -13,6 +13,11 @@ public class TankUnit : Unit {
 
     // Update is called once per frame
     void Update() {
+        if(Target == null)
+            return;
 
+        if(Vector3.Distance(transform.position, Target.transform.position) <= 6) {
+            DealDamage(Target);
+        }
     }
 }

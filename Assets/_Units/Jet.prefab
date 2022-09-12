@@ -274,6 +274,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   UpdateSpeed: 0.5
   RotationSpeed: 10
+  forwardDistance: 20
 --- !u!1 &8107805263151917315
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,9 +324,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e354f21ebde45479c5742df203bd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   _speed: 0
-  _health: 0
-  _damage: 0
+  _health: 50
+  _damage: 60
+  Renderer: {fileID: 5121965747333771035}
 --- !u!114 &4830864968427248730
 MonoBehaviour:
   m_ObjectHideFlags: 0
