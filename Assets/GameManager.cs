@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager> {
     public UnityEvent HideOutlineEvent { get { return _hideOutlineEvent; } }
     private UnityEvent _hideOutlineEvent = new UnityEvent();
 
+    List<AttackController> _attackControllers = new List<AttackController>();
     List<Player> players = new List<Player>();
     Country[] _countries = null;
 
@@ -51,6 +52,7 @@ public class GameManager : Singleton<GameManager> {
             if(_countries[countryIndex] == localPlayerCountry)
                 countryIndex++;
             player.Country = _countries[countryIndex];
+            countryIndex++;
         }
 
         _startGameEvent?.Invoke();
@@ -60,5 +62,24 @@ public class GameManager : Singleton<GameManager> {
         _hideOutlineEvent?.Invoke();
 
         country.ShowCountryOutline();
+    }
+
+    public void CreateAttack(Country attackingCountry, Country defendingCountry, List<Unit> units) {
+        _attackControllers.Add(new AttackController(attackingCountry, defendingCountry, units));
+    }
+
+    public bool IsBeingAttacked(Country country) {
+        foreach(AttackController attackController in _attackControllers) {
+            if(attackController.DefendingCountry == country)
+                return true;
+        }
+        return false;
+    }
+
+    [ContextMenu("Test Country Name")]
+    public void GetCountry() {
+        Debug.Log(players[0].Country.name);
+        Debug.Log(players[1].Country.name);
+        Debug.Log(players[2].Country.name);
     }
 }

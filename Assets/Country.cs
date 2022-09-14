@@ -172,8 +172,7 @@ public class Country : MonoBehaviour {
             }
         }
 
-        new AttackController(this, country, army);
-        //StartCoroutine(SlowReleaseTroops(country));
+        GameManager.Instance.CreateAttack(this, country, army);
     }
 
     private bool MoveUnitToActive(Unit unit) {

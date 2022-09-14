@@ -17,6 +17,7 @@ public class TankUnit : Unit {
             return;
 
         if(Vector3.Distance(transform.position, Target.transform.position) <= 6) {
+            Debug.Log("attack");
             DealDamage(Target);
         }
     }

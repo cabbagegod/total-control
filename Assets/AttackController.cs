@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackController {
+    public Country AttackingCountry { get { return _attackingCountry; } }
+    public Country DefendingCountry { get { return _defendingCountry; } }
+
     List<Unit> _units = new List<Unit>();
     Country _attackingCountry;
     Country _defendingCountry;
